@@ -3,14 +3,14 @@
 sqlite3 test.db
 ```
 ### DB Structure
+Note: Need to determine how many slots to support and how to clear/reset
 #### Rooms table:
-| roomNum[numeric(3)] | slot_name[varchar(25)] | slot_value[varchar(25)] | slot_units[varchar(10)] | slot_name[varchar(25)] | slot_value[varchar(25)] | slot_units[varchar(10)] | slot_name[varchar(25)] | slot_value[varchar(25)] | slot_units[varchar(10)] |
-| ------------------- | ---------------------- | ---------- | ---------- | ---------------------- | ---------- | ---------- | ---------------------- | ---- | -- | -- | -- | -- |
-| 1   | Device 1 | 1 | '' | Device 2 | 2 | '' | Device 3 | 3 | '' |
-| 2   | Thermometer | 70 | F | Humidity | 30 | % | Speed | 35 | mph |
-| ... | | | | | | | | | |
-| 999 | Switch1 | on | | Switch2 | off | | Switch3 | on | | |
-
+| roomNum[numeric(3)] | slot_name[varchar(25)] | slot_value[varchar(25)] | slot_units[varchar(10)] | ... |
+| -- | -- | -- | -- | -- |
+| 1 | Device 1 | 1 | '' | ... |
+| 2 | Thermometer | 70 | F | ... |
+| ... | ... | ... | ... | ... |
+| 999 | Switch1 | on | '' | ... |
 
 ### Add rooms table and populate Room 1 with values
 ```
