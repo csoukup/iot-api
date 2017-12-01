@@ -5,7 +5,7 @@ sqlite3 test.db
 ### DB Structure
 Note: Need to determine how many slots to support and how to clear/reset
 #### Rooms table:
-| roomNum[numeric(3)] | slot_name[varchar(25)] | slot_value[varchar(25)] | slot_units[varchar(10)] | ... |
+| roomNum[numeric(3)] | slot1_name[varchar(25)] | slot1_value[varchar(25)] | slot1_units[varchar(10)] | ... |
 | -- | -- | -- | -- | -- |
 | 1 | Device 1 | 1 | '' | ... |
 | 2 | Thermometer | 70 | F | ... |
