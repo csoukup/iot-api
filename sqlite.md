@@ -24,7 +24,15 @@ create table rooms(
   slot2_units varchar(10),
   slot3_name varchar(25),
   slot3_value varchar(25),
-  slot3_units varchar(10));
-insert into rooms values('1', 'Device 1', '1', '', 'Device 2', '2', '', 'Device 3', '3', '');
+  slot3_units varchar(10)
+  ...
+  slot12_name varchar(25),
+  slot12_value varchar(25),
+  slot12_units varchar(10));
+insert into rooms values('1', '', '', '', '', '', '', '', '', '' ...);
+insert into rooms values('2', '', '', '', '', '', '', '', '', '' ...);
+insert into rooms values('3', '', '', '', '', '', '', '', '', '' ...);
+...
+insert into rooms values('999', '', '', '', '', '', '', '', '', '' ...);
 .exit
 ```
