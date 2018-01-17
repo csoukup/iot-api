@@ -71,10 +71,13 @@ class Read(Resource):
 class Write(Resource):
     def get(self, roomId, slotId, field, value):
         conn = db_connect.connect()
-        ## Check that room is in the valid int range
+        ## Check that room is in the valid range (1-999)
         if int(roomId) >=1 and int(roomId) <=999:
+            ## Check that field is an expected type (value,name,units)
             if field == 'value' or field == 'name' or field == 'units':
+                ## Check that slot is in the valid range (1-12)
                 if int(slotId) >= 1 and int(slotId) <= 12:
+                    ## Construct the slot name for db query
                     slot = 'slot'
                     slot += str(slotId)
                     if field == 'value':
