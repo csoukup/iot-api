@@ -33,38 +33,38 @@ class Room(Resource):
 class Read(Resource):
     def get(self, roomId, slotId, field):
         conn = db_connect.connect()
-        if field == 'name' and int(slotId) >= 1 and int(slotId) <= 999:
-            #return slot name
-            slot = 'slot'
-            slot += str(slotId)
-            slot += '_name'
-            print slot
-            query = conn.execute('select %s from rooms where roomNum =%d' %(slot, int(roomId)))
-            for row in query:
-              result = row[slot]
-        elif field == 'value' and int(slotId) >= 1 and int(slotId) <= 999:
-            #return slot value
-            slot = 'slot'
-            slot += str(slotId)
-            slot += '_value'
-            query = conn.execute('select %s from rooms where roomNum =%d' %(slot, int(roomId)))
-            for row in query:
-              result = row[slot]
-        elif field == 'units' and int(slotId) >= 1 and int(slotId) <= 999:
-            #return slot units
-            slot = 'slot'
-            slot += str(slotId)
-            slot += '_units'
-            query = conn.execute('select %s from rooms where roomNum =%d' %(slot, int(roomId)))
-            for row in query:
-              result = row[slot]
-        else:
-            #return error
-            #return {'error'}
-            abort(404)
+        ## Check that room is in the valid range (1-999)
+        if int(roomId) >=1 and int(roomId) <=999:
+            ## Check that field is an expected type (value,name,units)
+            if field == 'value' or field == 'name' or field == 'units':
+                ## Check that slot is in the valid range (1-12)
+                if int(slotId) >= 1 and int(slotId) <= 12:
+                    ## Construct the slot name for db query
+                    slot = 'slot'
+                    slot += str(slotId)
+                    if field == 'value':
+                        slot += '_value'
+                    elif field == 'name':
+                        slot += '_name'
+                    else:
+                        slot += '_units'
+                    query = conn.execute('select %s from rooms where roomNum =%d' %(slot, int(roomId)))
+                    for row in query:
+                        result = row[slot]
+                    return jsonify(result)
 
-        result = { 'data': [dict(zip(tuple (query.keys()), i)) for i in query.cursor]}
-        return jsonify(result)
+                else:
+                    return bad_request('Slot number out of range: ' + slotId)
+            else:
+                #print ('Invalid field: ' + field)
+                #abort(404)
+                return bad_request('Invalid field: ' + field)
+        else:
+            return bad_request('Room number out of range: ' + roomId)
+
+
+        #result = { 'data': [dict(zip(tuple (query.keys()), i)) for i in query.cursor]}
+
 
 
 #Route_3
