@@ -1,10 +1,16 @@
-### Create new test.db
+### Run script to create test.db
+```
+python initialize_db.py
+```
+
+### Alternative method/Description of the script
+#### Create new test.db
 ```
 sqlite3 test.db
 ```
-### DB Structure
+#### DB Structure
 Note: Need to determine how many slots to support and how to clear/reset
-#### Rooms table:
+##### Rooms table:
 | roomNum[numeric(3)] | slot1_name[varchar(25)] | slot1_value[varchar(25)] | slot1_units[varchar(10)] | ... |
 | -- | -- | -- | -- | -- |
 | 1 | Device 1 | 1 | '' | ... |
@@ -12,7 +18,7 @@ Note: Need to determine how many slots to support and how to clear/reset
 | ... | ... | ... | ... | ... |
 | 999 | Switch1 | on | '' | ... |
 
-### Add rooms table and populate Room 1 with values
+#### Add rooms table and populate Room 1 with values
 ```
 create table rooms(
   roomNum numeric(3) primary key,
